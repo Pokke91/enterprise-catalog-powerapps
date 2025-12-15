@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CanvasApp xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Name>admin_enterprisepublisher_73d61</Name>
+  <AppVersion>2025-12-15T06:45:12Z</AppVersion>
+  <Status>Ready</Status>
+  <CreatedByClientVersion>3.25122.3.0</CreatedByClientVersion>
+  <MinClientVersion>3.25122.3.0</MinClientVersion>
+  <Tags>{"primaryDeviceWidth":"1366","primaryDeviceHeight":"768","supportsPortrait":"true","supportsLandscape":"true","primaryFormFactor":"Tablet","showStatusBar":"false","publisherVersion":"3.25122.3","minimumRequiredApiVersion":"2.2.0","hasComponent":"false","hasUnlockedComponent":"false","isUnifiedRootApp":"false","sienaVersion":"20251215T063724Z-3.25122.3.0"}</Tags>
+  <IsCdsUpgraded>0</IsCdsUpgraded>
+  <GalleryItemId xsi:nil="true"></GalleryItemId>
+  <BackgroundColor>RGBA(0,176,240,1)</BackgroundColor>
+  <DisplayName>Enterprise Publisher</DisplayName>
+  <Description>Kurzbeschreibung:
+Die Canvas-App „Catalog Item Deployer“ ermöglicht es Administratoren, Power Platform-Catalog-Einträge (Catalog Items) zentral zu verwalten und mit einem Klick auf beliebig viele Dataverse-Umgebungen auszurollen. Über eine übersichtliche Zweispalten-Ansicht wählen Sie links das zu verteilende Solution-Item aus und rechts die Ziel-Connections (Environments). Per Knopfdruck startet die App einen Power Automate-Flow, der im Hintergrund die Dataverse-Web-API aufruft und das ausgewählte Catalog Item in allen angewählten Umgebungen installiert oder aktualisiert.
+
+Hauptfeatures:
+
+Zweispaltige Navigation: Linke Gallery zeigt alle verfügbaren Catalog Items (Name, Version), rechte Gallery alle konfigurierten Umgebungen (Name, URL, aktueller Installationsstatus).
+
+Selektions-Logik: Mehrfachauswahl in beiden Spalten per Checkbox; verhindert unbeabsichtigte Deployments.
+
+Interaktiver Deploy-Button: Sendet eine JSON-Struktur mit allen ausgewählten Umgebungs-URLs und dem Catalog-Item-GUID an einen Power Automate-Flow.
+
+Echtzeit-Feedback: Nach dem Push liefert der Flow für jede Umgebung Statuscode, neue Versionsnummer und Fehlermeldungen zurück. Die App zeigt</Description>
+  <CommitMessage xsi:nil="true"></CommitMessage>
+  <Publisher></Publisher>
+  <AuthorizationReferences>[]</AuthorizationReferences>
+  <ConnectionReferences>{"50169895-2fd6-474b-97aa-e47b9de4bd0d":{"id":"/providers/microsoft.powerapps/apis/shared_powerplatformforadmins","displayName":"Power Platform for Admins","iconUri":"https://conn-afd-prod-endpoint-bmc9bqahasf3grgk.b01.azurefd.net/v1.0.1778/1.0.1778.4417/powerplatformforadmins/icon.png","dataSources":["PowerPlatformforAdmins"],"dependencies":[],"dependents":[],"parameterHints":{},"parameterHintsV2":{},"isOnPremiseConnection":false,"bypassConsent":false,"dataSets":{},"apiTier":"Standard","actions":["Get-AdminEnvironment"]},"c0e76b49-f4f4-4ad3-9946-1aae404113fb":{"id":"/providers/microsoft.powerapps/apis/shared_logicflows","displayName":"Logic flows","iconUri":"https://conn-afd-prod-endpoint-bmc9bqahasf3grgk.b01.azurefd.net/v1.0.1774/1.0.1774.4397/logicflows/icon.png","dataSources":["InstallCatalogItemsinEnvironments"],"dependencies":["b62c5697-c393-4f71-9ef1-e116d8012017"],"dependents":[],"parameterHints":{"workflowName":{"value":"2b926aa0-d6bb-4955-ad3c-0265333a3d84"},"workflowEntityId":{"value":"2582c3b2-3351-f011-877b-000d3ab00c3b"},"workflowDisplayName":{"value":"Install Catalog Items in Environments"},"b62c5697-c393-4f71-9ef1-e116d8012017":{"value":"shared_webcontents_1"}},"parameterHintsV2":{"workflowName":{"value":"2b926aa0-d6bb-4955-ad3c-0265333a3d84"},"workflowEntityId":{"value":"2582c3b2-3351-f011-877b-000d3ab00c3b"},"workflowDisplayName":{"value":"Install Catalog Items in Environments"},"shared_webcontents_1":{"value":"b62c5697-c393-4f71-9ef1-e116d8012017"}},"isOnPremiseConnection":false,"bypassConsent":false,"dataSets":{},"apiTier":"Standard","actions":["Run"]},"b62c5697-c393-4f71-9ef1-e116d8012017":{"id":"/providers/microsoft.powerapps/apis/shared_webcontents","xrmConnectionReferenceLogicalName":"admin_sharedwebcontents_0eac0","displayName":"HTTP with Microsoft Entra ID (preauthorized)","executionRestrictions":{"version":1,"modifiedOn":"2025-12-15 06:45:10","appVer":"3.25122.3","apiId":"unknown","policy":"{\"type\":\"unused\"}"},"iconUri":"https://conn-afd-prod-endpoint-bmc9bqahasf3grgk.b01.azurefd.net/releases/v1.0.1784/1.0.1784.4488/WebContents/icon.png","dataSources":[],"dependencies":[],"dependents":["c0e76b49-f4f4-4ad3-9946-1aae404113fb"],"parameterHints":{},"parameterHintsV2":{},"isOnPremiseConnection":false,"sharedConnectionId":"e67c0761-f7b8-4c26-b21f-0de71ea551d4","bypassConsent":false,"dataSets":{},"apiTier":"Premium","authenticationType":"EntraAuth"}}</ConnectionReferences>
+  <DatabaseReferences>{"default.cds":{"databaseDetails":{"referenceType":"Environmental","environmentName":"default.cds","overrideValues":{"status":"NotSpecified","environmentVariableName":""}},"dataSources":{"Catalog Items":{"entitySetName":"mspcat_applicationses","logicalName":"mspcat_applications"},"Install Histories":{"entitySetName":"mspcat_installhistories","logicalName":"mspcat_installhistory"},"Packages":{"entitySetName":"mspcat_packageses","logicalName":"mspcat_packages"}}}}</DatabaseReferences>
+  <AppComponents>[]</AppComponents>
+  <AppComponentDependencies>[]</AppComponentDependencies>
+  <CanConsumeAppPass>1</CanConsumeAppPass>
+  <CanvasAppType>0</CanvasAppType>
+  <BypassConsent>0</BypassConsent>
+  <AdminControlBypassConsent>0</AdminControlBypassConsent>
+  <EmbeddedApp xsi:nil="true"></EmbeddedApp>
+  <IntroducedVersion>1.0</IntroducedVersion>
+  <CdsDependencies>{"cdsdependencies":[{"dependencyid":"2582c3b2-3351-f011-877b-000d3ab00c3b","componenttype":29,"componenttypeplatformname":"Workflow"},{"logicalname":"mspcat_applications","componenttype":1},{"logicalname":"mspcat_installhistory","componenttype":1},{"logicalname":"mspcat_packages","componenttype":1},{"logicalname":"admin_sharedwebcontents_0eac0","componenttype":10132,"componenttypeplatformname":"ConnectionReference"}]}</CdsDependencies>
+  <IsCustomizable>1</IsCustomizable>
+  <BackgroundImageUri>/CanvasApps/admin_enterprisepublisher_73d61_BackgroundImageUri</BackgroundImageUri>
+  <DocumentUri>/CanvasApps/admin_enterprisepublisher_73d61_DocumentUri.msapp</DocumentUri>
+  <AdditionalUris>
+    <AdditionalUri>/CanvasApps/admin_enterprisepublisher_73d61_AdditionalUris0_identity.json</AdditionalUri>
+  </AdditionalUris>
+</CanvasApp>

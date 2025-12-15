@@ -1,0 +1,146 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_webcontents": {
+        "runtimeSource": "invoker",
+        "connection": {
+          "connectionReferenceLogicalName": "admin_sharedwebcontents_0eac0"
+        },
+        "api": {
+          "name": "shared_webcontents"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "2c1a62fe-56fe-42a5-8e61-aeedea15c977"
+          },
+          "type": "Request",
+          "kind": "PowerAppV2",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "title": "EnvironmentJSON",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please enter your input",
+                  "x-ms-content-hint": "TEXT"
+                },
+                "text_1": {
+                  "title": "CatalogItem",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please enter your input",
+                  "x-ms-content-hint": "TEXT"
+                }
+              },
+              "required": [
+                "text",
+                "text_1"
+              ]
+            }
+          }
+        }
+      },
+      "actions": {
+        "Compose_JSON": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "76f016ae-e8f8-4495-a581-6158c448445f"
+          },
+          "type": "Compose",
+          "inputs": "@json(triggerBody()['text_1'])"
+        },
+        "Apply_to_each": {
+          "foreach": "@outputs('Compose_JSON')",
+          "actions": {
+            "InstallCatalogItem": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "f0e63c34-7f8d-4174-8e24-1541db8a77ce"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_webcontents",
+                  "operationId": "InvokeHttp",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_webcontents"
+                },
+                "parameters": {
+                  "request/method": "POST",
+                  "request/url": "https://org78351b02.crm4.dynamics.com/api/data/v9.2/mspcat_InstallCatalogItemByCID",
+                  "request/headers": {
+                    "Accept": "application/json;odata.metadata=minimal",
+                    "Content-Type": "application/json; charset=utf-8"
+                  },
+                  "request/body": "{\n  \"CID\": \"@{triggerBody()['text']}\",\n  \"DeployToOrganizationUrl\": \"@{items('Apply_to_each')?['URL']}\"\n}"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            }
+          },
+          "runAfter": {
+            "Compose_JSON": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "13e1a4f6-4b71-4cf5-87c2-f735fc74a4a0"
+          },
+          "type": "Foreach",
+          "runtimeConfiguration": {
+            "concurrency": {
+              "repetitions": 25
+            }
+          }
+        },
+        "Respond_to_a_Power_App_or_flow": {
+          "runAfter": {
+            "Apply_to_each": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "e23916d1-5132-4e0e-a97b-dfedf6c1c1e0"
+          },
+          "type": "Response",
+          "kind": "PowerApp",
+          "inputs": {
+            "statusCode": 200,
+            "body": {
+              "varresponse": "true"
+            },
+            "schema": {
+              "type": "object",
+              "properties": {
+                "varresponse": {
+                  "title": "varResponse",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}
